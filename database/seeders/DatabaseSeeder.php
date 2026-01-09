@@ -16,6 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
 {
+
+    $this->call([
+
+        AgencySeeder::class,
+        EventSeeder::class,
+        ParticipateSeeder::class
+    ]);
     User::create([
         'name' => 'Teszt Elek',
         'email' => 'elek@example.com',
@@ -40,4 +47,6 @@ class DatabaseSeeder extends Seeder
         'permission' => 'user'
     ]);
 }
+
+
 }

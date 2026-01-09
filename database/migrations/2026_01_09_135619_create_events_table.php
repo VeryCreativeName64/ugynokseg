@@ -11,25 +11,23 @@ return new class extends Migration
      */
     public function up(): void
 {
-    Schema::create('users', function (Blueprint $table) {
+    Schema::create('events', function (Blueprint $table) {
         $table->id();
         $table->string('name');
-        $table->string('email')->unique();
-        $table->boolean('vip')->default(false); 
-        $table->string('password');
-        $table->string('permission')->default('user'); 
+        $table->foreignId('agency_id')->constrained('agencies'); 
+        $table->integer('limit'); 
+        $table->date('date');
+        $table->string('location');
+        $table->integer('status')->default(0); 
         $table->timestamps();
     });
-
-    }
+}
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('events');
     }
 };
