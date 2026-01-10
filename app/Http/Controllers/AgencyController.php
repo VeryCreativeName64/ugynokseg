@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Agency;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AgencyController extends Controller
 {
+    public function dashboard(): View
+    {
+        return view('agency.dashboard');
+    }
+
     public function index()
     {
        
@@ -39,5 +45,11 @@ class AgencyController extends Controller
       
         Agency::findOrFail($id)->delete();
         return response()->json(['message' => 'Ügynökség sikeresen törölve'], 200);
+    }
+
+    public function events($id)
+    {
+        $agency = Agency::findOrFail($id);
+        return $agency->events;
     }
 }

@@ -11,3 +11,11 @@ Route::apiResource('events', EventController::class);
 Route::apiResource('participates', ParticipateController::class);
 Route::apiResource('agencies', AgencyController::class);
 Route::apiResource('users', UserController::class);
+
+Route::get('/agencies/{id}/events', [AgencyController::class, 'events']);
+
+Route::get('/events/{id}/participants', [EventController::class, 'participants']);
+
+Route::get('/users/{id}/events', [UserController::class, 'events']);
+
+Route::get('/events/active', [EventController::class, 'activeEvents']);

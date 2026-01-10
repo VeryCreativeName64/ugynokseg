@@ -35,4 +35,15 @@ class EventController extends Controller
         Event::findOrFail($id)->delete();
         return response()->json(['message' => 'Esemény törölve'], 200);
     }
+
+    public function participants($id)
+    {
+        $event = Event::findOrFail($id);
+        return $event->participates;
+    }
+
+    public function activeEvents()
+    {
+        return Event::where('status', 1)->get();
+    }
 }

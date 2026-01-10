@@ -55,4 +55,10 @@ class UserController extends Controller
         User::findOrFail($id)->delete();
         return response()->json(['message' => 'Felhasználó törölve'], 200);
     }
+
+    public function events($id)
+    {
+        $user = User::findOrFail($id);
+        return $user->participates->load('event');
+    }
 }
